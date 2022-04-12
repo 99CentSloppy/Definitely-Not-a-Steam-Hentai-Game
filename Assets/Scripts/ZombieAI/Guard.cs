@@ -9,6 +9,9 @@ public class Guard : MonoBehaviour
 
     private NavMeshAgent navmesh;
 
+    public bool attack;
+    public int countdown;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,15 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        navmesh.destination = player.transform.position;
+        if(attack == true)
+        {
+            navmesh.destination = player.transform.position;
+        }
+        else
+        {
+
+        }
+
+        
     }
 }
