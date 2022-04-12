@@ -2,14 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mp40 : MonoBehaviour
+public class LGB : MonoBehaviour
 {
-
-    public int Damage = 35;
-    public float FireRate = .1f;
-    public int magCapacity = 30;
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +13,6 @@ public class mp40 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        FPSController.gravity 
     }
-
-    public void shoot()
-    {
-
-    }
-
 }
