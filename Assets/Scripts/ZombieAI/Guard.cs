@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 public class Guard : MonoBehaviour
 {
+    public GameObject zombie;
     public GameObject player;
-
     private NavMeshAgent navmesh;
 
     public bool attack;
@@ -16,6 +16,7 @@ public class Guard : MonoBehaviour
     void Start()
     {
         navmesh = GetComponent<NavMeshAgent>();
+        attack = false;
     }
 
     // Update is called once per frame
@@ -23,11 +24,12 @@ public class Guard : MonoBehaviour
     {
         if(attack == true)
         {
+            zombie.SetActive(true);
             navmesh.destination = player.transform.position;
         }
         else
         {
-
+            zombie.SetActive(false);
         }
 
         
