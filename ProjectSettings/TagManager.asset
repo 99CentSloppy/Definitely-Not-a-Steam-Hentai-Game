@@ -4,7 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Enemy
+=======
+  - Text
+>>>>>>> TannerBranch
   layers:
   - Default
   - TransparentFX
