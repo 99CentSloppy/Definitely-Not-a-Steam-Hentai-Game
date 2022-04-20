@@ -12,23 +12,24 @@ public class mp40 : MonoBehaviour
     private float nextFire = 0f;
     public int magCapacity = 30;
     public float distance = 100f;
-    public float reloadTime = 10;
+    public float reloadTime = 1.5f;
     public bool reloading = false;
-   
 
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetMouseButton(0) && Time.time > nextFire && magCapacity >= 1)
+        if (Input.GetMouseButton(0) && Time.time > nextFire && magCapacity >= 1 && reloading == false)
         {
             nextFire = Time.time + fireRate;
             shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && magCapacity < 30 && reloading == false)
         {
+            reloading = true;
             reload();
+            
         }
     }
 
@@ -36,8 +37,7 @@ public class mp40 : MonoBehaviour
     {
         magCapacity--;
         RaycastHit hit;
-        
-
+       
 
         if(Physics.Raycast(spawnPoint.position, spawnPoint.forward, out hit, distance))
         {
@@ -49,10 +49,11 @@ public class mp40 : MonoBehaviour
         }
     }
 
-    public void reload()
+    IEnumerator reload()
     {
-
+        yield return new WaitForSeconds(3);
         magCapacity = 30;
+        reloading = false;
     }
 
 }
