@@ -28,7 +28,7 @@ public class mp40 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && magCapacity < 30 && reloading == false)
         {
             reloading = true;
-            reload();
+            StartCoroutine(reload());
             
         }
     }
@@ -55,5 +55,7 @@ public class mp40 : MonoBehaviour
         magCapacity = 30;
         reloading = false;
     }
+
+  
 
 }
