@@ -47,7 +47,7 @@ public class WaveStart : MonoBehaviour
         time = 0;
         holdText = GameObject.Find("/WaveUI/Canvas/Text");
 
-        zombieCount = 0;
+        zombieCount = 5;
 
         maxPosX = 82;
         minPosX = -82;
@@ -56,19 +56,17 @@ public class WaveStart : MonoBehaviour
     }
 
 
-    public void WaveCall(int waveCount)
+    public void WaveCall(int waveCount, int zombieCount)
     {
-        zombieCount = 5;
-            if (zombieCount > 0) {
-            SpawnZombie(zombieCount * waveCount);
+            zombieCount = zombieCount * waveCount;
+            for (zombieCount--; zombieCount >= 0; zombieCount--)
+            {
+                SpawnZombie();
             }
-
-        waveStart = false;
     }
 
-    public void SpawnZombie(int zombieCount)
+    public void SpawnZombie()
     {
-        zombieCount = 0;
         var newPos = new Vector3(UnityEngine.Random.Range(minPosX, maxPosX), 0, UnityEngine.Random.Range(minPosY, maxPosY));
         GameObject go = GameObject.Instantiate(zombieObject);
         go.transform.position = newPos;
@@ -77,11 +75,15 @@ public class WaveStart : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        //Initialize Countdown
         if(gameStart == true)
         {
             time = 10;
             gameStart = false;
         }
+
+        //Countdown
         if(time > 0) {
             time -= Time.deltaTime;
             countdown = (int)time;
@@ -89,18 +91,24 @@ public class WaveStart : MonoBehaviour
         }
 
         //Zombie Spawning
-        if (waveStart == true && zombieCount >= 0)
+        if (waveStart == true && zombieCount > 0)
         {
-            WaveCall(waveCount);
             waveCount++;
+            WaveCall(waveCount, zombieCount);
+            zombieCount = 0;
         }
 
-        if (time <= 0)
+        //Wave Starting After Countdown
+        if (time <= 0 && waveStart == false)
         {
             countdownText.text = " ";
             holdText.SetActive(false);
             waveStart = true;
         }
+
+
+
+        //TO INITIALIZE THE WAVE START, MAKE SURE THAT YOU CHANGE waveStart TO FALSE
        
     }
 }

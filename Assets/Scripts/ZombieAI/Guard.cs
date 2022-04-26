@@ -15,12 +15,22 @@ public class Guard : MonoBehaviour
     public bool ifHit;
     public int health;
 
+    public float acceleration;
+    public float deceleration;
+    public float closeEnoughMeters;
+
+    public FPSController playerHealth;
+
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        speed = 20.0f;
+        speed = 7.5f;
         health = 100;
+
+        acceleration = 20f;
+        deceleration = 60f;
+        closeEnoughMeters = 4f;
 
         player = WaveStart.instance.player;
         TargetPlayer();
@@ -36,5 +46,7 @@ public class Guard : MonoBehaviour
     void FixedUpdate()
     {
         TargetPlayer();
+        if (agent.hasPath)
+            agent.acceleration = (agent.remainingDistance < closeEnoughMeters) ? deceleration : acceleration;
     }
 }

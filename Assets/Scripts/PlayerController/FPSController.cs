@@ -15,6 +15,8 @@ public class FPSController : MonoBehaviour {
     public float lookXLimit = 45.0f;
     public Light flashlight;
 
+    public int playerHealth;
+
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
@@ -26,7 +28,8 @@ public class FPSController : MonoBehaviour {
     {
         characterController = GetComponent<CharacterController>();
 
-        
+        playerHealth = 20;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
