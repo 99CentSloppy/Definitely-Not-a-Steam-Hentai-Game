@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class FPSController : MonoBehaviour { 
 
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 15.5f;
+    public float walkingSpeed = 6f;
+    public float runningSpeed = 10f;
     public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
+    public float gravity = 30.0f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
     public Light flashlight;
+
+    public Guard enemyHit;
 
     public int playerHealth;
 
@@ -28,11 +30,25 @@ public class FPSController : MonoBehaviour {
     {
         characterController = GetComponent<CharacterController>();
 
-        playerHealth = 20;
+        playerHealth = 100;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+
+    //Damage system
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.collider.gameObject.CompareTag("Enemy")){ //If player collides with an enemy:
+        
+            playerHealth = playerHealth - 5;
+
+        }
+
+    }
+
 
     void Update()
     {
@@ -64,7 +80,8 @@ public class FPSController : MonoBehaviour {
        
         characterController.Move(moveDirection * Time.deltaTime);
 
-        
+
+
         if (canMove)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
