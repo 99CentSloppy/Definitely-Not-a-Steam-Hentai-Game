@@ -27,6 +27,7 @@ public class Guard : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         speed = 4.5f;
         health = 100;
+        ifHit = false;
 
         acceleration = 20f;
         deceleration = 60f;
