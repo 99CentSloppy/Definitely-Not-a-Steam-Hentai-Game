@@ -4,7 +4,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 
-public class FPSController : MonoBehaviour { 
+public class FPSController : MonoBehaviour {
 
     public float walkingSpeed = 6f;
     public float runningSpeed = 10f;
@@ -14,6 +14,7 @@ public class FPSController : MonoBehaviour {
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
     public Light flashlight;
+    public Rigidbody playerRigidBody;
 
     public Guard enemyHit;
 
@@ -37,17 +38,14 @@ public class FPSController : MonoBehaviour {
     }
 
 
-    //Damage system
     private void OnCollisionEnter(Collision collision)
     {
-
-        if (collision.collider.gameObject.CompareTag("Enemy")){ //If player collides with an enemy:
+        if (collision.gameObject.CompareTag("Enemy"))
+            playerHealth -= 5;
+            playerRigidBody.Rigidbody.AddForce
         
-            playerHealth = playerHealth - 5;
-
-        }
-
     }
+
 
 
     void Update()
