@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CharacterController))]
 
@@ -15,8 +16,6 @@ public class FPSController : MonoBehaviour {
     public float lookXLimit = 45.0f;
     public Light flashlight;
     public Rigidbody playerRigidBody;
-
-    public Guard enemyHit;
 
     public int playerHealth;
 
@@ -38,14 +37,15 @@ public class FPSController : MonoBehaviour {
     }
 
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-            playerHealth -= 5;
-            playerRigidBody.Rigidbody.AddForce
-        
-    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            playerHealth -= 5;
+            playerRigidBody.AddForce(moveDirection.normalized * 500f);
+        }
+    }
 
 
     void Update()
