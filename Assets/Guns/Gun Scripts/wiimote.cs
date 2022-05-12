@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mp40 : MonoBehaviour
+public class wiimote : MonoBehaviour
 {
-
     public Transform player, gunContainer, fpsCam;
     public Rigidbody rb;
     public BoxCollider coll;
     public Transform spawnPoint;
     public int damage = 35;
-    public float fireRate = .1f;
+    public float fireRate = .03f;
     private float nextFire = 0f;
-    public int magCapacity = 30;
+    public int magCapacity = 12;
     public float distance = 100f;
     public float reloadTime = 1.5f;
     public bool reloading = false;
@@ -52,10 +51,11 @@ public class mp40 : MonoBehaviour
         {
             reloading = true;
             StartCoroutine(reload());
-            
+
         }
         Vector3 distanceToPlayer = player.position - transform.position;
-        if (Input.GetKeyDown(KeyCode.E) && !equipped && distanceToPlayer.magnitude <= pickUpRange && !slotFull){
+        if (Input.GetKeyDown(KeyCode.E) && !equipped && distanceToPlayer.magnitude <= pickUpRange && !slotFull)
+        {
             pickUp();
         }
         if (Input.GetKeyDown(KeyCode.G) && equipped && slotFull && reloading == false)
@@ -71,19 +71,19 @@ public class mp40 : MonoBehaviour
         RaycastHit hit;
         //fire effects
         muzzleFlash.Play();
-        
-        
-       
 
-        if(Physics.Raycast(spawnPoint.position, spawnPoint.forward, out hit, distance))
-           {
+
+
+
+        if (Physics.Raycast(spawnPoint.position, spawnPoint.forward, out hit, distance))
+        {
             GameObject bH = Instantiate(bulletHole, hit.point + new Vector3(0f, 0f, -.02f), Quaternion.LookRotation(hit.normal));
             if (hit.transform.tag == "Enemy")
             {
                 Debug.Log("Hit");
 
             }
-            
+
         }
     }
 
@@ -123,6 +123,6 @@ public class mp40 : MonoBehaviour
         float random = Random.Range(-1f, 1f);
         rb.AddTorque(new Vector3(random, random, random) * 10);
     }
-  
+
 
 }

@@ -12,7 +12,7 @@ public class FPSController : MonoBehaviour
     public float gravity = 20.0f;
     public Camera playerCamera;
     public float lookSpeed = 2.0f;
-    public float lookXLimit = 45.0f;
+    private float lookXLimit = 90f;
     public Light flashlight;
 
     CharacterController characterController;
