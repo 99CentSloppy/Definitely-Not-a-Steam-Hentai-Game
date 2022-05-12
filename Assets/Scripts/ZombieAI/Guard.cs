@@ -29,8 +29,6 @@ public class Guard : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         speed = 4.5f;
         health = 100;
-        ifHit = false;
-
 
         acceleration = 20f;
         deceleration = 60f;
@@ -49,6 +47,11 @@ public class Guard : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+
         TargetPlayer();
         if (agent.hasPath)
             agent.acceleration = (agent.remainingDistance < closeEnoughMeters) ? deceleration : acceleration;

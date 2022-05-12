@@ -23,6 +23,8 @@ public class mp40 : MonoBehaviour
     public ParticleSystem muzzleFlash;
     public GameObject bulletHole;
 
+    public Guard zombie;
+
 
     private void Start()
     {
@@ -81,8 +83,11 @@ public class mp40 : MonoBehaviour
             if (hit.transform.tag == "Enemy")
             {
 
-                Debug.Log("Hit");
+                Debug.Log("Hit" + hit.collider.gameObject.name);
 
+               Guard zombie = hit.collider.GetComponent<Guard>();
+
+                zombie.health -= damage;
             }
             
         }
