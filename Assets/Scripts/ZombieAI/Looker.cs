@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Looker : MonoBehaviour
 {
-    public GameObject guard;
+    public GameObject zombie;
     private float reset = 1;
     private bool movingDown;
 
@@ -28,7 +28,7 @@ public class Looker : MonoBehaviour
         reset -= Time.deltaTime;
         if (reset > 10000)
         {
-            guard.GetComponent<Guard>().enabled = false;
+            zombie.GetComponent<Zombie>().enabled = false;
             GetComponent<SphereCollider>().enabled = true;
         }
     }
@@ -37,7 +37,7 @@ public class Looker : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            guard.GetComponent<Guard>().enabled = true;
+            zombie.GetComponent<Zombie>().enabled = true;
             reset = 5;
             GetComponent<SphereCollider>().enabled = false;
         }

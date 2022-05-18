@@ -152,10 +152,10 @@ GameObject:
   - component: {fileID: 4337642808134141310}
   - component: {fileID: 4337642808134141250}
   - component: {fileID: 4337642808134141251}
-  - component: {fileID: 4337642808134141253}
   - component: {fileID: 4337642808134141311}
+  - component: {fileID: 5470826677709811376}
   m_Layer: 0
-  m_Name: Guard
+  m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,27 +260,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4337642808134141253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4337642808134141308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6478f3c1e7880d145b8bdb447372f004, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zombie: {fileID: 4337642806419743643}
-  player: {fileID: 4337642808134141248}
-  countdown: 0
-  ifHit: 0
-  health: 0
-  acceleration: 0
-  deceleration: 0
-  closeEnoughMeters: 0
-  playerHealth: {fileID: 0}
 --- !u!136 &4337642808134141311
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -295,3 +274,25 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5470826677709811376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4337642808134141308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3bb4215dfe8a03943a8359bf5d7e716c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zombie: {fileID: 4337642806419743643}
+  player: {fileID: 4337642808134141248}
+  waveManager: {fileID: 0}
+  countdown: 0
+  isDead: 0
+  health: 0
+  acceleration: 0
+  deceleration: 0
+  closeEnoughMeters: 0
+  playerHealth: {fileID: 0}

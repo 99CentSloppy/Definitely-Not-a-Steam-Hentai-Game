@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Guard : MonoBehaviour
+public class Zombie : MonoBehaviour
 {
-    public GameObject zombie;
+
+public GameObject zombie;
     public Transform player;
     private NavMeshAgent agent;
     public static float speed;
 
-
+    public WaveStart waveManager;
 
     public int countdown;
 
-    public bool ifHit;
+    public bool isDead;
     public int health;
 
     public float acceleration;
@@ -30,6 +31,8 @@ public class Guard : MonoBehaviour
         speed = 4.5f;
         health = 100;
 
+        waveManager = WaveStart.getInstance();
+
         acceleration = 20f;
         deceleration = 60f;
         closeEnoughMeters = 4f;
@@ -44,13 +47,19 @@ public class Guard : MonoBehaviour
         agent.destination = player.position;
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void TakeDamage(int damage)
     {
+        health = health - damage;
         if (health <= 0)
         {
             Destroy(this.gameObject);
+            waveManager.zombieCount--;
         }
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
 
         TargetPlayer();
         if (agent.hasPath)
